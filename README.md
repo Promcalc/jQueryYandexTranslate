@@ -5,7 +5,7 @@ jQuery plugin for yandex translate api
 
 Test example code:
 
-```
+```JavaScript
 <script type="text/javascript" src="yaTranslate.js"></script>
 <script type="text/javascript">
 /*<![CDATA[*/
