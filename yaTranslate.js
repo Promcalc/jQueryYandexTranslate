@@ -12,7 +12,10 @@
 	    	adrtranslate: 'https://translate.yandex.net/api/v1.5/tr.json/translate?key=[apikey]&text=[text]&lang=[lang]&format=[format]',
 
 	    	showtranslatedirs: null,
-	    	hidetranslatedirs: null
+	    	hidetranslatedirs: null,
+
+	    	menustyle: null,
+	    	menuclass: null
 	    },
 
 	    oTranslateDiv = null,
@@ -24,7 +27,6 @@
 	        adr,
 	        function(data) {
 	        	if( ('code' in data) && (data.code == 200) && ('text' in data) ) {
-	        		console.log('data = ', data);
 	        		obResult.html(data.text[0]);
 	        	}
 	        }
@@ -39,9 +41,17 @@
 
 	      		if( !$.isEmptyObject(dstList) ) {
 	      			if( !oTranslateDiv ) {
-	      				oTranslateDiv = $('<div />')
-	      				                  .css({position: 'absolute', top: '-4px', right: 0, border: '1px solid #000000', color: '#770000', backgroundColor: '#ffff00', display: 'none', padding: '3px'})
-	      				                  .appendTo('body');
+	      				oTranslateDiv = $('<div />');
+	      				if( setting.menustyle ) {
+	      					oTranslateDiv.css(setting.menustyle);
+	      				}
+	      				if( setting.menustyle ) {
+	      					oTranslateDiv.css(setting.menustyle);
+	      				}
+	      				if( setting.menuclass ) {
+	      					oTranslateDiv.addClass(setting.menuclass);
+	      				}
+	      				oTranslateDiv.appendTo('body');
 	      			}
 	      			oTranslateDiv.html('');
 	      			for(s in dstList) {
@@ -63,7 +73,6 @@
 	      			  .show()
 	      			  .find('a')
 	      			  .on('click', function(event) { event.preventDefault(); showTranslateText($(this).attr('href'), oTranslateDiv); return false; } );
-	      			console.log('set lang menu'); // , setting
 	      		}
 	    },
 
@@ -110,17 +119,14 @@
 							continue;
 						}
 						s = dirs[i].substr(nPatternLength);
-//						console.log(dirs[i] + ' -> ' + s);
 						if( (s in dstList) && (s in langs) ) {
 							dstList[s] = langs[s];
 						}
 					}
-//					console.log('setting = ', setting);
 				}
 			);
 		}
 
-//		console.log('setting = ', setting);
 		return this
 		        .on( "mouseenter", function(event) {
 		        	if( bLeaveObject ) {
