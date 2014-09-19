@@ -5,7 +5,7 @@ jQuery plugin for yandex translate api
 
 Test example code:
 
-
+```
 <script type="text/javascript" src="yaTranslate.js"></script>
 <script type="text/javascript">
 /*<![CDATA[*/
@@ -22,4 +22,4 @@ jQuery(function($) {
 
 /*]]>*/
 </script>
-
+```
